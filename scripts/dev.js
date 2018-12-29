@@ -1,5 +1,3 @@
-const { serve } = require('./service');
+const { build, serve } = require('./service');
 
-process.env.NODE_ENV = 'development';
-
-serve();
+build();

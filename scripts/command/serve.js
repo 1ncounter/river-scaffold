@@ -1,4 +1,4 @@
-const { info } = require('../utils/logger');
+const { info } = require('@vue/cli-shared-utils');
 
 const defaults = {
   host: '0.0.0.0',
@@ -11,6 +11,13 @@ module.exports = (api, options) => {
     'serve',
     {
       description: 'start development server',
+      usage: 'cli-service serve [options] [entry]',
+      options: {
+        '--mode': `specify env mode (default: development)`,
+        '--host': `specify host (default: ${defaults.host})`,
+        '--port': `specify port (default: ${defaults.port})`,
+        '--https': `use https (default: ${defaults.https})`,
+      },
     },
     async function serve(args) {
       info('Starting development server...');

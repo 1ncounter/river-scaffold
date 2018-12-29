@@ -15,10 +15,11 @@ function ensureRelative(outputDir, _path) {
 module.exports = (api, options) => {
   api.chainWebpack(webpackConfig => {
     const isProd = process.env.NODE_ENV === 'production';
+    const isLegacyBundle = process.env.CLI_MODERN_MODE && !process.env.CLI_MODERN_BUILD;
     const outputDir = api.resolve(options.outputDir);
 
     // code splitting
-    if (isProd) {
+    if (isProd && !process.env.CYPRESS_ENV) {
       webpackConfig.optimization.splitChunks({
         cacheGroups: {
           vendors: {
@@ -138,7 +139,7 @@ module.exports = (api, options) => {
 
     webpackConfig.plugin('html').use(HTMLPlugin, [htmlOptions]);
 
-    if (isProd) {
+    if (!isLegacyBundle) {
       // inject preload/prefetch to HTML
       webpackConfig.plugin('preload').use(PreloadPlugin, [
         {
@@ -168,7 +169,7 @@ module.exports = (api, options) => {
 
     // copy static assets in public/
     const publicDir = api.resolve('public');
-    if (fs.existsSync(publicDir)) {
+    if (!isLegacyBundle && fs.existsSync(publicDir)) {
       webpackConfig.plugin('copy').use(require('copy-webpack-plugin'), [
         [
           {

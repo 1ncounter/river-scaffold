@@ -1,4 +1,4 @@
-const { createSchema, validate } = require('./utils/validate');
+const { createSchema, validate } = require('@vue/cli-shared-utils');
 
 const schema = createSchema(joi =>
   joi.object({

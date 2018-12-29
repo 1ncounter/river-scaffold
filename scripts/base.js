@@ -7,7 +7,7 @@ const merge = require('webpack-merge');
 const _defaultsDeep = require('lodash/defaultsDeep');
 
 const Plugin = require('./plugin');
-const { warn, error } = require('./utils/logger');
+const { warn, error } = require('@vue/cli-shared-utils');
 const { validate, defaults } = require('./options');
 
 module.exports = class BaseService {
@@ -26,6 +26,10 @@ module.exports = class BaseService {
     this.pkg = this.resolvePkg(pkg);
 
     this.plugins = this.resolvePlugins(plugins, useBuiltIn);
+
+    this.modes = this.plugins.reduce((modes, { apply: { defaultModes } }) => {
+      return Object.assign(modes, defaultModes);
+    }, {});
   }
 
   init(mode = process.env.CLI_MODE) {
@@ -65,7 +69,7 @@ module.exports = class BaseService {
     // resolve mode
     // prioritize inline --mode
     // fallback to resolved default modes from plugins or development if --watch is defined
-    const mode = args.mode || 'development';
+    const mode = args.mode || (name === 'build' && args.watch ? 'development' : this.modes[name]);
 
     // load env variables, load user config, apply plugins
     this.init(mode);
@@ -126,6 +130,7 @@ module.exports = class BaseService {
 
     const builtInPlugins = [
       './command/serve',
+      './command/build',
       // config plugins are order sensitive
       '../config/core',
       '../config/css',
@@ -154,6 +159,7 @@ module.exports = class BaseService {
     if (!this.initialized) {
       throw new Error('Service must call init() before calling resolveWebpackConfig().');
     }
+
     // get raw config
     let config = chainableConfig.toConfig();
     const original = config;

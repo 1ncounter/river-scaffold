@@ -1,5 +1,6 @@
 module.exports = (api, options) => {
   api.chainWebpack(webpackConfig => {
+    const isLegacyBundle = process.env.CLI_MODERN_MODE && !process.env.CLI_MODERN_BUILD;
     const resolveLocal = require('../scripts/utils/resolveLocal');
     const getAssetPath = require('../scripts/utils/getAssetPath');
     const inlineLimit = 4096;
@@ -28,7 +29,7 @@ module.exports = (api, options) => {
       .add(resolveLocal('src/main.ts'))
       .end()
       .output.path(api.resolve(options.outputDir))
-      .filename('[name].js')
+      .filename(isLegacyBundle ? '[name]-legacy.js' : '[name].js')
       .publicPath(options.baseUrl);
 
     webpackConfig.resolve.extensions
