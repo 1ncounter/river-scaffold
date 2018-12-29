@@ -1,11 +1,12 @@
 {
-  "name": "coderiver-react-mobile",
+  "name": "river-scaffold",
   "version": "1.0.0",
-  "description": "coderiver",
+  "description": "scaffold",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "serve": "node scripts/dev"
+    "serve": "node scripts/bin/cli-service serve",
+    "build": "node scripts/bin/cli-service build"
   },
   "dependencies": {
     "lodash": "^4.17.11"
@@ -29,10 +30,12 @@
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
     "mini-css-extract-plugin": "^0.5.0",
+    "minimist": "^1.2.0",
     "portfinder": "^1.0.20",
     "postcss-loader": "^3.0.0",
     "preload-webpack-plugin": "^3.0.0-beta.3",
     "read-pkg": "^4.0.1",
+    "semver": "^5.6.0",
     "terser-webpack-plugin": "^1.2.1",
     "ts-loader": "^5.3.2",
     "typescript": "^3.2.2",
@@ -41,5 +44,8 @@
     "webpack-chain": "^5.0.1",
     "webpack-dev-server": "^3.1.14",
     "webpack-merge": "^4.1.5"
+  },
+  "engines": {
+    "node": ">=8.9.0"
   }
 }
