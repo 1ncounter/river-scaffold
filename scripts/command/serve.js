@@ -1,4 +1,4 @@
-const { info } = require('@vue/cli-shared-utils');
+const { info, hasProjectYarn, openBrowser, IpcMessenger } = require('@vue/cli-shared-utils');
 
 const defaults = {
   host: '0.0.0.0',
@@ -155,13 +155,22 @@ module.exports = (api, options) => {
             isFirstCompile = false;
 
             if (!isProduction) {
+              const buildCommand = hasProjectYarn(api.getCwd()) ? `yarn build` : `npm run build`;
               console.log(`  Note that the development build is not optimized.`);
-              console.log(`  To create a production build, run ${chalk.cyan('build')}.`);
+              console.log(`  To create a production build, run ${chalk.cyan(buildCommand)}.`);
             } else {
               console.log(`  App is served in production mode.`);
               console.log(`  Note this is for preview or E2E testing only.`);
             }
             console.log();
+
+            if (args.open || projectDevServerOptions.open) {
+              const pageUri =
+                projectDevServerOptions.openPage && typeof projectDevServerOptions.openPage === 'string'
+                  ? projectDevServerOptions.openPage
+                  : '';
+              openBrowser(urls.localUrlForBrowser + pageUri);
+            }
 
             // resolve returned Promise
             // so other commands can do api.service.run('serve').then(...)

@@ -74,6 +74,8 @@ module.exports = (api, options) => {
             .options({
               publicPath: cssPublicPath,
             });
+        } else {
+          rule.use('style-loader').loader('style-loader');
         }
 
         const cssLoaderOptions = Object.assign(
