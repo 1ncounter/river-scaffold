@@ -34,7 +34,7 @@ const findExisting = (context, files) => {
 function resolveEntry(entry) {
   const context = process.cwd();
 
-  entry = entry || findExisting(context, ['src/main.ts', 'src/index.ts']);
+  entry = entry || findExisting(context, ['src/main.ts', 'src/index.ts', 'src/main.tsx', 'src/index.tsx']);
 
   if (!entry) {
     console.log(chalk.red(`Failed to locate entry file in ${chalk.yellow(context)}.`));

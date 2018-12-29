@@ -1,10 +1,22 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "noImplicitAny": true,
+    "module": "esnext",
     "removeComments": true,
     "preserveConstEnums": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "target": "es5",
+    "lib": ["es6", "dom"],
+    "moduleResolution": "node",
+    "jsx": "react",
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "importHelpers": true,
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]

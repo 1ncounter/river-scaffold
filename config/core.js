@@ -26,7 +26,7 @@ module.exports = (api, options) => {
       .mode('development')
       .context(api.service.context)
       .entry('app')
-      .add(resolveLocal('src/main.ts'))
+      .add(resolveLocal('src/index.tsx'))
       .end()
       .output.path(api.resolve(options.outputDir))
       .filename(isLegacyBundle ? '[name]-legacy.js' : '[name].js')
@@ -49,12 +49,21 @@ module.exports = (api, options) => {
     // static assets -----------------------------------------------------------
 
     webpackConfig.module
+      .rule('lint')
+      .test(/\.(ts|tsx)$/)
+      .pre()
+      .include.add(resolveLocal('src'))
+      .end()
+      .use('tslint')
+      .loader('tslint-loader');
+
+    webpackConfig.module
       .rule('compile')
       .test(/\.(ts|tsx)$/)
       .include.add(resolveLocal('src'))
       .end()
       .use('ts-loader')
-      .loader('ts-loader');
+      .loader('awesome-typescript-loader');
 
     webpackConfig.module
       .rule('images')
