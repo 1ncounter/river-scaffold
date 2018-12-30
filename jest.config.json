@@ -1,8 +1,15 @@
 {
+  "preset": "ts-jest",
+  "testEnvironment": "node",
   "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
   "transform": {
-    "^.+\\.tsx?$": "ts-jest"
+    "^.+\\.(ts?|tsx?)$": "ts-jest"
   },
-  "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-  "setupFiles": ["<rootDir>/tests/setupTests.ts"]
+  "testMatch": ["**/__tests__/**/*.ts?(x)", "**/?(*.)+(spec|test).ts?(x)"],
+  "setupFiles": ["<rootDir>/tests/setupTests.ts"],
+  "globals": {
+    "ts-jest": {
+      "diagnostics": false
+    }
+  }
 }

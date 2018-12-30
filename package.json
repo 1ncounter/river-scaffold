@@ -2,12 +2,11 @@
   "name": "river-scaffold",
   "version": "1.0.0",
   "description": "scaffold",
-  "main": "index.js",
   "license": "MIT",
   "scripts": {
     "serve": "node scripts/bin/cli-service serve",
     "build": "node scripts/bin/cli-service build",
-    "test": "ts-jest"
+    "test": "jest --config jest.config.json"
   },
   "dependencies": {
     "lodash": "^4.17.11",
@@ -18,6 +17,7 @@
     "@intervolga/optimize-cssnano-plugin": "^1.0.6",
     "@types/enzyme": "^3.1.15",
     "@types/enzyme-adapter-react-16": "^1.0.3",
+    "@types/jest": "^23.3.10",
     "@types/react": "^16.7.18",
     "@types/react-dom": "^16.0.11",
     "@vue/cli-shared-utils": "^3.2.0",
@@ -37,6 +37,7 @@
     "fs-extra": "^7.0.1",
     "hash-sum": "^1.0.2",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^23.6.0",
     "joi": "^14.3.1",
     "mini-css-extract-plugin": "^0.5.0",
     "minimist": "^1.2.0",
