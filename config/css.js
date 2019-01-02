@@ -63,10 +63,13 @@ module.exports = (api, options) => {
       const baseRule = webpackConfig.module.rule(lang).test(test);
 
       // rules for normal CSS imports
-      const normalRule = baseRule.oneOf('normal');
-      const extModulesRule = baseRule.oneOf('normal-modules').test(new RegExp('\\.module\\.' + lang + '$'));
-      applyLoaders(normalRule, false);
-      if (modules) applyLoaders(extModulesRule, true);
+      // const normalRule = baseRule.oneOf('normal');
+      // applyLoaders(normalRule, false);
+
+      if (modules) {
+        const extModulesRule = baseRule.oneOf('normal-modules').test(new RegExp('\\.module\\.' + lang + '$'));
+        applyLoaders(extModulesRule, true);
+      }
 
       function applyLoaders(rule, modules) {
         if (shouldExtract) {
@@ -93,15 +96,20 @@ module.exports = (api, options) => {
           Object.assign(cssLoaderOptions, {
             modules,
             localIdentName,
-            namedExport: true,
+            nameExport: true,
             camelCase: true,
           });
-        }
 
-        rule
-          .use('css-loader')
-          .loader('css-loader')
-          .options(cssLoaderOptions);
+          rule
+            .use('typings-for-css-modules-loader')
+            .loader('typings-for-css-modules-loader')
+            .options(cssLoaderOptions);
+        } else {
+          rule
+            .use('css-loader')
+            .loader('css-loader')
+            .options(cssLoaderOptions);
+        }
 
         if (needInlineMinification) {
           rule
@@ -133,7 +141,7 @@ module.exports = (api, options) => {
     createCSSRule('scss', /\.scss$/, 'sass-loader', loaderOptions.sass);
     createCSSRule('less', /\.less$/, 'less-loader', loaderOptions.less);
     createCSSRule(
-      'stylus',
+      'styl',
       /\.styl(us)?$/,
       'stylus-loader',
       Object.assign(
