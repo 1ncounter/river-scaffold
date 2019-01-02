@@ -1,8 +1,9 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import './index.css';
+import './index.styl';
+import * as styles from './index.module.styl';
 
-const App: React.SFC = () => <div>app</div>;
+const App: React.SFC = () => <div className={styles.color}>app123</div>;
 
 ReactDOM.render(<App />, document.getElementById('root') as HTMLElement);

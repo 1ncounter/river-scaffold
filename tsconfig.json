@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "module": "esnext",
     "removeComments": true,
     "preserveConstEnums": true,
     "sourceMap": true,
     "target": "es5",
-    "lib": ["es6", "dom"],
+    "lib": ["es2015", "dom", "dom.iterable", "scripthost"],
     "moduleResolution": "node",
     "jsx": "react",
     "forceConsistentCasingInFileNames": true,
@@ -18,7 +19,10 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "esModuleInterop": true,
-    "typeRoots": ["node_modules/@types"]
+    "typeRoots": ["node_modules/@types", "./typings"],
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
   "include": ["src/**/*", "tests/**/*"],
   "exclude": ["node_modules"]

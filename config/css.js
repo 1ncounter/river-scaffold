@@ -64,7 +64,9 @@ module.exports = (api, options) => {
 
       // rules for normal CSS imports
       const normalRule = baseRule.oneOf('normal');
-      applyLoaders(normalRule, modules);
+      const extModulesRule = baseRule.oneOf('normal-modules').test(new RegExp('\\.module\\.' + lang + '$'));
+      applyLoaders(normalRule, false);
+      if (modules) applyLoaders(extModulesRule, true);
 
       function applyLoaders(rule, modules) {
         if (shouldExtract) {
@@ -91,6 +93,8 @@ module.exports = (api, options) => {
           Object.assign(cssLoaderOptions, {
             modules,
             localIdentName,
+            namedExport: true,
+            camelCase: true,
           });
         }
 
@@ -140,6 +144,7 @@ module.exports = (api, options) => {
       )
     );
 
+    // console.log(webpackConfig.toConfig());
     // inject CSS extraction plugin
     if (shouldExtract) {
       webpackConfig.plugin('extract-css').use(require('mini-css-extract-plugin'), [extractOptions]);

@@ -8,7 +8,7 @@
     "jsx-no-lambda": false,
     "ordered-imports": false,
     "object-literal-sort-keys": false,
-    "no-import-side-effect": [true, { "ignore-module": "(\\.css)$" }],
+    "no-import-side-effect": [true, { "ignore-module": "(\\.(css|styl|less|scss))$" }],
     "curly": [true, "ignore-same-line"],
     "no-console": false
   },

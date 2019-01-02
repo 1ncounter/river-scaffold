@@ -1,7 +1,9 @@
 module.exports = {
-  chainWebpack: config => {},
+  chainWebpack: webpackConfig => {},
   configureWebpack: {},
-  css: {},
+  css: {
+    modules: true,
+  },
   devServer: {
     open: process.platform === 'darwin',
     host: '0.0.0.0',
