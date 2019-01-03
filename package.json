@@ -1,8 +1,9 @@
 {
   "name": "river-scaffold",
   "version": "1.0.0",
-  "description": "scaffold",
+  "description": "Typescript-React's scaffold, the scaffold configures like poi and vue-cli.",
   "license": "MIT",
+  "author": "1ncounter",
   "scripts": {
     "serve": "node scripts/bin/cli-service serve",
     "build": "node scripts/bin/cli-service build",
