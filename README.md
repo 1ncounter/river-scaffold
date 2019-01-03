@@ -2,20 +2,23 @@
 
 Typescript-React's scaffold, the scaffold configures are learning from poi and vue-cli.
 
-##### npm
+### development environment
+
+Node.js >= 8.9.0
+
+### scripts
 
 ```
-npm install
-npm run serve
-npm run build
-```
+serve
+'--mode': `specify env mode (default: development)`,
+'--host': `specify host`,
+'--port': `specify port`,
+'--https': `use https`,
 
-##### yarn
-
-```
-yarn
-yarn serve
-yarn build
+build
+'--mode': `specify env mode (default: production)`,
+'--dest': `specify output directory`,
+'--modern': `build app targeting modern browsers with auto fallback`
 ```
 
 ### css
