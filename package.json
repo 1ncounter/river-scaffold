@@ -30,7 +30,7 @@
     "chalk": "^2.4.1",
     "cliui": "^4.1.0",
     "copy-webpack-plugin": "^4.6.0",
-    "css-loader": "^2.1.0",
+    "css-loader": "1.0.1",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.7.1",
     "extract-css-loader": "^0.0.1",

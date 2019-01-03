@@ -62,14 +62,13 @@ module.exports = (api, options) => {
     function createCSSRule(lang, test, loader, options) {
       const baseRule = webpackConfig.module.rule(lang).test(test);
 
-      // rules for normal CSS imports
-      // const normalRule = baseRule.oneOf('normal');
-      // applyLoaders(normalRule, false);
+      // rules for *.module.* files
+      const extModulesRule = baseRule.oneOf('normal-modules').test(/\.module\.\w+$/);
+      applyLoaders(extModulesRule, true);
 
-      if (modules) {
-        const extModulesRule = baseRule.oneOf('normal-modules').test(new RegExp('\\.module\\.' + lang + '$'));
-        applyLoaders(extModulesRule, true);
-      }
+      // rules for normal CSS imports
+      const normalRule = baseRule.oneOf('normal');
+      applyLoaders(normalRule, false);
 
       function applyLoaders(rule, modules) {
         if (shouldExtract) {
@@ -95,8 +94,8 @@ module.exports = (api, options) => {
           const { localIdentName = '[name]_[local]_[hash:base64:5]' } = loaderOptions.css || {};
           Object.assign(cssLoaderOptions, {
             modules,
+            namedExport: true,
             localIdentName,
-            nameExport: true,
             camelCase: true,
           });
 

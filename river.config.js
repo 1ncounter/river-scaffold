@@ -1,6 +1,10 @@
+const webpack = require('webpack');
+
 module.exports = {
   chainWebpack: webpackConfig => {},
-  configureWebpack: {},
+  configureWebpack: {
+    plugins: [new webpack.WatchIgnorePlugin([/css\.d\.ts$/, /styl\.d\.ts$/])],
+  },
   css: {
     modules: true,
   },
