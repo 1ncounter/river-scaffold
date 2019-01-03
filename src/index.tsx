@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 
 import './index.styl';
 import * as styles from './index.module.styl';
-console.log(styles.foo);
-const App: React.SFC = () => <div>app123</div>;
+
+const App: React.SFC = () => <div className={styles.foo}>app123</div>;
 
 ReactDOM.render(<App />, document.getElementById('root') as HTMLElement);
