@@ -6,7 +6,7 @@ module.exports = {
     plugins: [new webpack.WatchIgnorePlugin([/css\.d\.ts$/, /styl\.d\.ts$/])],
   },
   css: {
-    modules: true,
+    modules: false,
   },
   devServer: {
     open: process.platform === 'darwin',

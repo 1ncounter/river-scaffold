@@ -98,17 +98,12 @@ module.exports = (api, options) => {
             localIdentName,
             camelCase: true,
           });
-
-          rule
-            .use('typings-for-css-modules-loader')
-            .loader('typings-for-css-modules-loader')
-            .options(cssLoaderOptions);
-        } else {
-          rule
-            .use('css-loader')
-            .loader('css-loader')
-            .options(cssLoaderOptions);
         }
+
+        rule
+          .use('css-loader')
+          .loader('css-loader')
+          .options(cssLoaderOptions);
 
         if (needInlineMinification) {
           rule
